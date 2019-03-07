@@ -1,0 +1,27 @@
+.root {
+  height: 64px;
+  position: fixed;
+  background: white;
+  width: 100%;
+  z-index: 2;
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.05);
+  display: grid;
+  grid-template-rows: 64px;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-areas: 'left left left logo logo home about darkmode right right right right';
+}
+
+#home {
+  grid-area: home;
+}
+#about {
+  grid-area: about;
+}
+#darkMode {
+  grid-area: darkmode;
+}
+
+#logo {
+  grid-area: logo;
+}

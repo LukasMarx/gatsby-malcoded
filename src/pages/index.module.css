@@ -1,0 +1,7 @@
+.content {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 200px 200px;
+  grid-gap: 20px;
+  grid-template-areas: 'a a a b b b' 'c c d d  e e';
+}
