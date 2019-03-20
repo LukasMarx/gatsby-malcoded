@@ -24,6 +24,10 @@ h2 {
   margin-top: 16px;
 }
 
+/* .gatsby-resp-image-image {
+  box-shadow: none !important;
+} */
+
 code[class*='language-'],
 pre[class*='language-'] {
   color: #c5c8c6;

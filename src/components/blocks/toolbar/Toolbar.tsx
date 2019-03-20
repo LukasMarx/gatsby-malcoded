@@ -7,6 +7,8 @@ import { darkBackground, lightBackground } from '../../../theme/background'
 import { darkText, lightText } from '../../../theme/text'
 import Button from '../../elements/button/Button'
 import { toogleDarkMode } from '../../../state/actions/theme.actions'
+import { Link } from 'gatsby'
+import Logo from '../../Logo'
 
 export interface ToolbarProps {
   theme: ThemeState
@@ -46,13 +48,24 @@ class Toolbar extends Component<ToolbarProps> {
   render() {
     return (
       <div className={styles.root} style={this.stlyes()}>
-        <span id={styles.logo}>malcoded.com</span>
-        <Button flat fill id={styles.home}>
-          Home
-        </Button>
-        <Button flat fill id={styles.about}>
-          About
-        </Button>
+        <Link
+          to="/"
+          id={styles.logo}
+          style={{ textDecoration: 'none', margin: 6, marginLeft: 0 }}
+        >
+          <Logo style={{ height: '100%' }}>malcoded.com</Logo>
+        </Link>
+
+        <Link to="/" id={styles.home} style={{ textDecoration: 'none' }}>
+          <Button flat fill>
+            Home
+          </Button>
+        </Link>
+        <Link to="/" id={styles.about} style={{ textDecoration: 'none' }}>
+          <Button flat fill>
+            About
+          </Button>
+        </Link>
         <Button
           flat
           fill

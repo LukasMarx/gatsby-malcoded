@@ -6,6 +6,6 @@ export const lightBackground: ThemeBackgroundColor = {
 }
 
 export const darkBackground: ThemeBackgroundColor = {
-  default: '#555',
-  paper: '#555',
+  default: '#1f2e41',
+  paper: '#0e1125',
 }

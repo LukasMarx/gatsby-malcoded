@@ -6,6 +6,8 @@ import { connect } from 'react-redux'
 import { AppState } from '../state/reducer'
 import { darkBackground, lightBackground } from '../theme/background'
 import { darkText, lightText } from '../theme/text'
+import Button from '../components/elements/button/Button'
+import { Link } from '@reach/router'
 
 export interface HeaderFooterLayoutProps {
   theme: ThemeState
@@ -36,12 +38,59 @@ class HeaderFooterLayout extends React.Component<
       }
     }
   }
+
+  footerStyles(): CSSProperties {
+    if (this.props.theme.darkMode) {
+      return {
+        backgroundColor: darkBackground.paper,
+        color: darkText.primary,
+      }
+    } else {
+      return {
+        backgroundColor: lightBackground.paper,
+        color: lightText.primary,
+      }
+    }
+  }
   render() {
     return (
       <div className={styles.root} style={this.styles()}>
         <Toolbar />
         <div className={styles.content}>{this.props.children}</div>
-        <footer className={styles.footer} />
+        <footer className={styles.footer} style={this.footerStyles()}>
+          <Link to="/" id={styles.home} style={{ textDecoration: 'none' }}>
+            <Button flat fill>
+              Home
+            </Button>
+          </Link>
+          <Link
+            to="/about"
+            id={styles.about}
+            style={{ textDecoration: 'none' }}
+          >
+            <Button flat fill>
+              About
+            </Button>
+          </Link>
+          <Link
+            to="/privacy"
+            id={styles.privacy}
+            style={{ textDecoration: 'none' }}
+          >
+            <Button flat fill>
+              Privacy
+            </Button>
+          </Link>
+          <Link
+            to="/about"
+            id={styles.legal}
+            style={{ textDecoration: 'none' }}
+          >
+            <Button flat fill>
+              Legal Notice
+            </Button>
+          </Link>
+        </footer>
       </div>
     )
   }

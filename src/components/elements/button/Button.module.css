@@ -2,7 +2,7 @@
   position: relative;
 
   display: block;
-  padding: 8px;
+  padding: 10px 14px 10px 14px;
   overflow: hidden;
   border-width: 0;
   outline: none;
@@ -13,4 +13,6 @@
   transition: background-color 0.3s;
   font-weight: 600;
   text-transform: uppercase;
+  text-decoration: none;
+  margin: 0;
 }

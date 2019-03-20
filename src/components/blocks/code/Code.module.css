@@ -1,6 +1,8 @@
 .root {
   box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.11),
     0 5px 15px 0 rgba(0, 0, 0, 0.08);
+  margin-top: 32px;
+  margin-bottom: 32px;
 }
 .bar {
   width: 100%;
@@ -28,11 +30,13 @@
 
 .pre {
   width: 100%;
-  font-size: 1.1em;
+  font-size: 1.05em;
   white-space: pre-wrap;
-  padding: 16px;
+  padding: 32px;
   font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono,
     DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
   margin: 0;
   box-sizing: border-box;
+  line-height: 1.5;
+  overflow-x: auto;
 }

@@ -4,6 +4,7 @@ import Prism from 'prismjs'
 import { connect } from 'react-redux'
 import { AppState } from '../../../state/reducer'
 import { ThemeState } from '../../../state/reducers/theme.reducer'
+import { darkBackground, lightBackground } from '../../../theme/background'
 
 export interface CodeProps {
   codeString: string
@@ -56,7 +57,6 @@ class Code extends Component<CodeProps> {
         console.error(e)
       }
     }
-    console.log(Prism.languages)
     if (Prism.languages[this.props.language]) {
       result = Prism.highlight(
         this.props.codeString,
@@ -70,6 +70,11 @@ class Code extends Component<CodeProps> {
         className={`${styles.root}  ${
           this.props.theme.darkMode ? '' : 'theme--light'
         }`}
+        style={{
+          backgroundColor: this.props.theme.darkMode
+            ? darkBackground.paper
+            : lightBackground.paper,
+        }}
       >
         {this.renderBar()}
         <pre

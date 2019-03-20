@@ -1,8 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link, graphql } from 'gatsby'
 import MDXRenderer from 'gatsby-mdx/mdx-renderer'
 
-import Bio from '../components/Bio'
 import SEO from '../components/seo'
 import HeaderFooterLayout from '../layouts/HeaderFooterLayout'
 
@@ -11,10 +10,18 @@ import { connect } from 'react-redux'
 import { setPrimaryColor } from '../state/actions/theme.actions'
 import { ThemeColor } from '../models/Theme'
 import { AppState } from '../state/reducer'
+import { ThemeState } from '../state/reducers/theme.reducer'
+
+import Img from 'gatsby-image'
+import Toc from '../components/blocks/toc/Toc'
+import Sidebar from '../components/blocks/sidebar/Sidebar'
+import Comments from '../components/blocks/comments/Comments'
 
 export interface BlogPostTemplateProps {
   data: any
   pageContext: any
+  setPrimaryColor(color: ThemeColor): void
+  theme: ThemeState
 }
 
 const mapStateToProps = (state: AppState) => {
@@ -35,12 +42,14 @@ const BlogPostTemplate: React.SFC<BlogPostTemplateProps> = props => {
   const siteTitle = props.data.site.siteMetadata.title
   const { previous, next } = props.pageContext
 
-  setPrimaryColor({
-    dark: post.frontmatter.colorDark,
-    light: post.frontmatter.colorLight,
-    main: post.frontmatter.colorMain,
-    contrast: '#fff',
-  })
+  useEffect(() => {
+    props.setPrimaryColor({
+      dark: post.frontmatter.colorDark,
+      light: post.frontmatter.colorLight,
+      main: post.frontmatter.colorMain,
+      contrast: '#fff',
+    })
+  }, [])
 
   return (
     <HeaderFooterLayout>
@@ -48,49 +57,28 @@ const BlogPostTemplate: React.SFC<BlogPostTemplateProps> = props => {
       <div className={styles.grid}>
         <div className={styles.sidebarLeft} />
         <div className={styles.content}>
-          <img
-            className={styles.image}
-            src={post.frontmatter.image.childImageSharp.fixed.src}
+          <Img
+            style={{ width: '100%' }}
+            fluid={post.frontmatter.image.childImageSharp.fluid}
           />
           <h1>{post.frontmatter.title}</h1>
-          <p
+          <small
             style={{
               display: `block`,
             }}
           >
             {post.frontmatter.date}
-          </p>
+          </small>
           <MDXRenderer>{post.code.body}</MDXRenderer>
-          <hr style={{}} />
-          <Bio />
-
-          <ul
-            style={{
-              display: `flex`,
-              flexWrap: `wrap`,
-              justifyContent: `space-between`,
-              listStyle: `none`,
-              padding: 0,
-            }}
-          >
-            <li>
-              {previous && (
-                <Link to={previous.fields.slug} rel="prev">
-                  ← {previous.frontmatter.title}
-                </Link>
-              )}
-            </li>
-            <li>
-              {next && (
-                <Link to={next.fields.slug} rel="next">
-                  {next.frontmatter.title} →
-                </Link>
-              )}
-            </li>
-          </ul>
+          <br />
+          <Comments postId={post.frontmatter.id} />
+        </div>
+        <div className={styles.sidebarRight}>
+          <Sidebar>
+            <Toc toc={post.tableOfContents} />
+          </Sidebar>
         </div>
       </div>
-      <div className={styles.sidebarRight} />
     </HeaderFooterLayout>
   )
 }
@@ -111,7 +99,9 @@ export const pageQuery = graphql`
     mdx(fields: { slug: { eq: $slug } }) {
       id
       excerpt(pruneLength: 160)
+      tableOfContents
       frontmatter {
+        id
         title
         colorLight
         colorMain
@@ -119,10 +109,8 @@ export const pageQuery = graphql`
         colorContrast
         image {
           childImageSharp {
-            fixed(width: 800) {
-              src
-              srcSet
-              base64
+            fluid(maxWidth: 1200) {
+              ...GatsbyImageSharpFluid_withWebp
             }
           }
         }

@@ -5,5 +5,5 @@ export const lightText = {
 
 export const darkText = {
   primary: '#fff',
-  secondary: '#555',
+  secondary: '#777',
 }

@@ -10,7 +10,6 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-typescript`,
-    `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -25,6 +24,8 @@ module.exports = {
         name: `assets`,
       },
     },
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-mdx`,
       options: {
@@ -33,7 +34,10 @@ module.exports = {
           {
             resolve: `gatsby-remark-images`,
             options: {
-              maxWidth: 590,
+              maxWidth: 1000,
+              backgroundColor: 'transparent',
+              withWebp: true,
+              linkImagesToOriginal: false,
             },
           },
           {
@@ -49,11 +53,15 @@ module.exports = {
           {
             resolve: `gatsby-remark-smartypants`,
           },
+          {
+            resolve: `gatsby-remark-autolink-headers`,
+            options: {
+              offsetY: '-100',
+            },
+          },
         ],
       },
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {

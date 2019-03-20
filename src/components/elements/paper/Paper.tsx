@@ -43,7 +43,6 @@ class Paper extends Component<PaperProps> {
     if (this.props.style) {
       style = Object.assign(style, this.props.style)
     }
-    console.log(style)
     return (
       <div className={styles.root} style={style}>
         {this.props.children}

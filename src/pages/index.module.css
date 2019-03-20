@@ -1,7 +1,46 @@
 .content {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: 200px 200px;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: auto auto;
   grid-gap: 20px;
-  grid-template-areas: 'a a a b b b' 'c c d d  e e';
+  grid-area: content;
+  grid-template-areas: 'a a a b b b' 'c c d d e e';
+  margin-top: 16px;
+}
+
+@media only screen and (max-width: 768px) {
+  .content {
+    grid-template-areas: 'a a a a a a' 'b b b b b b' 'c c c c c c' 'd d d d d d' 'e e e e e e';
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+.root {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-areas: 'left left content content content content content content content content right right';
+}
+
+@media only screen and (max-width: 768px) {
+  .root {
+    grid-template-areas: 'content content content content content content content content content content content content';
+  }
+}
+
+.title {
+  font-size: 24px;
+}
+
+.excerpt {
+  font-size: 16px;
+}
+
+@media only screen and (max-width: 768px) {
+  .item {
+    grid-column: span 6;
+  }
+}
+.item {
+  grid-column: span 2;
 }

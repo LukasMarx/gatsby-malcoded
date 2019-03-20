@@ -9,19 +9,43 @@
   grid-template-rows: 64px;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-areas: 'left left left logo logo home about darkmode right right right right';
+  box-sizing: border-box;
+  grid-template-areas: 'left left logo logo logo logo logo home about darkmode  right right';
 }
 
+@media only screen and (max-width: 768px) {
+  .root {
+    grid-template-areas: 'logo logo logo logo logo logo home home darkmode darkmode darkmode darkmode';
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+.logoWrapper {
+  height: 100%;
+}
 #home {
   grid-area: home;
+  min-width: 0;
 }
 #about {
   grid-area: about;
+  min-width: 0;
 }
+
+@media only screen and (max-width: 768px) {
+  #about {
+    grid-area: about;
+    display: none;
+  }
+}
+
 #darkMode {
   grid-area: darkmode;
+  min-width: 0;
 }
 
 #logo {
   grid-area: logo;
+  min-width: 0;
 }

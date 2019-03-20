@@ -8,6 +8,39 @@
 
 .content {
   margin-top: 64px;
+  margin-bottom: 64px;
+}
+
+.footer {
+  height: 64px;
+
+  background: white;
+  width: 100%;
+  z-index: 2;
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.05);
+  display: grid;
+  grid-template-rows: 64px;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  box-sizing: border-box;
+  grid-template-areas: 'left left home home about about privacy privacy legal legal   right right';
+}
+
+#home {
+  grid-area: home;
+  min-width: 0;
+}
+#about {
+  grid-area: about;
+  min-width: 0;
+}
+#privacy {
+  grid-area: privacy;
+  min-width: 0;
+}
+#legal {
+  grid-area: legal;
+  min-width: 0;
 }
 
 /* roboto-300 - latin */
